@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const BEARS = [
   { id: "honey",   color: "#D4860A", name: "Honey",   emoji: "🐻" },
