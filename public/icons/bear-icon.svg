@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Bear Colour Quest icon</title>
+  <desc id="desc">A stylized bear face with warm golden highlights on a transparent background.</desc>
+  <defs>
+    <linearGradient id="fur" x1="120" x2="388" y1="84" y2="412" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8f5a33"/>
+      <stop offset="0.55" stop-color="#6d4327"/>
+      <stop offset="1" stop-color="#4a2918"/>
+    </linearGradient>
+    <linearGradient id="snout" x1="180" x2="338" y1="218" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7d2a4"/>
+      <stop offset="1" stop-color="#d89a62"/>
+    </linearGradient>
+    <linearGradient id="innerEar" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f9bb76"/>
+      <stop offset="1" stop-color="#d98734"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <circle cx="150" cy="138" r="74" fill="url(#fur)"/>
+    <circle cx="362" cy="138" r="74" fill="url(#fur)"/>
+    <circle cx="150" cy="138" r="41" fill="url(#innerEar)"/>
+    <circle cx="362" cy="138" r="41" fill="url(#innerEar)"/>
+
+    <path fill="url(#fur)" d="M256 96c-94 0-170 76-170 170 0 92 76 166 170 166s170-74 170-166c0-94-76-170-170-170Z"/>
+    <ellipse cx="256" cy="282" rx="103" ry="87" fill="url(#snout)"/>
+
+    <circle cx="198" cy="236" r="20" fill="#1f120b"/>
+    <circle cx="314" cy="236" r="20" fill="#1f120b"/>
+    <circle cx="192" cy="229" r="6" fill="#ffffff" fill-opacity="0.75"/>
+    <circle cx="308" cy="229" r="6" fill="#ffffff" fill-opacity="0.75"/>
+
+    <path fill="#2f1b12" d="M256 254c-20 0-36 13-36 30 0 6 4 12 10 14l26 10 26-10c6-2 10-8 10-14 0-17-16-30-36-30Z"/>
+    <path fill="none" stroke="#2f1b12" stroke-linecap="round" stroke-width="12" d="M256 308v21"/>
+    <path fill="none" stroke="#2f1b12" stroke-linecap="round" stroke-width="12" d="M256 329c-18 23-43 34-72 34"/>
+    <path fill="none" stroke="#2f1b12" stroke-linecap="round" stroke-width="12" d="M256 329c18 23 43 34 72 34"/>
+
+    <path fill="#ffd76a" fill-opacity="0.92" d="M346 146c18 7 33 21 42 40 4 9 15 12 23 7 9-5 12-16 7-25-13-27-34-47-60-57-10-4-21 1-24 11-4 10 1 20 12 24Z"/>
+    <path fill="#ffffff" fill-opacity="0.2" d="M183 120c-37 20-62 59-62 104 0 65 53 117 117 117 53 0 98-35 112-84 13-47-1-98-38-131 23 29 32 68 21 105-17 58-77 92-135 75-44-13-74-53-77-98-1-30 10-61 31-88Z"/>
+  </g>
+</svg>
