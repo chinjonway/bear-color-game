@@ -9,6 +9,7 @@ const BEARS = [
   { id: "blue",    color: "#2471A3", name: "Blue",    emoji: "💙" },
 ];
 const SLOTS = 4;
+const INSTALL_DISMISS_KEY = "bcq_install_dismissed";
 
 function newSecret() {
   return Array.from({ length: SLOTS }, () => BEARS[Math.floor(Math.random() * BEARS.length)].id);
@@ -23,11 +24,70 @@ export default function BearV9() {
   const [won, setWon]         = useState(false);
   const [picked, setPicked]   = useState(null);
   const [shake, setShake]     = useState(false);
+  const [deferredInstallPrompt, setDeferredInstallPrompt] = useState(null);
+  const [showInstallBanner, setShowInstallBanner] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
+  const [nativeInstallReady, setNativeInstallReady] = useState(false);
   const endRef = useRef(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }, [guesses.length]);
+
+  useEffect(() => {
+    const ua = navigator.userAgent || "";
+    const ios = /iphone|ipad|ipod/i.test(ua);
+    const standalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+    const dismissed = localStorage.getItem(INSTALL_DISMISS_KEY) === "1";
+
+    setIsIOS(ios);
+
+    if (!standalone && ios && !dismissed) {
+      setShowInstallBanner(true);
+    }
+
+    const onBeforeInstallPrompt = (event) => {
+      event.preventDefault();
+      setDeferredInstallPrompt(event);
+      setNativeInstallReady(true);
+      if (!dismissed) {
+        setShowInstallBanner(true);
+      }
+    };
+
+    const onInstalled = () => {
+      setShowInstallBanner(false);
+      setDeferredInstallPrompt(null);
+      setNativeInstallReady(false);
+    };
+
+    window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt);
+    window.addEventListener("appinstalled", onInstalled);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", onBeforeInstallPrompt);
+      window.removeEventListener("appinstalled", onInstalled);
+    };
+  }, []);
+
+  async function handleInstall() {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    try {
+      const choice = await deferredInstallPrompt.userChoice;
+      if (choice?.outcome === "accepted") {
+        setShowInstallBanner(false);
+      }
+    } finally {
+      setDeferredInstallPrompt(null);
+      setNativeInstallReady(false);
+    }
+  }
+
+  function dismissInstallBanner() {
+    setShowInstallBanner(false);
+    localStorage.setItem(INSTALL_DISMISS_KEY, "1");
+  }
 
   function pick(id) {
     if (won) return;
@@ -142,6 +202,47 @@ export default function BearV9() {
 
       {/* ── SCROLLABLE TOP AREA ── */}
       <div style={{ paddingBottom:230, fontFamily:"'Fredoka One',cursive", color:"#fff" }}>
+
+        {showInstallBanner && (
+          <div style={{
+            margin:"12px 12px 0",
+            background:"rgba(255,215,0,.12)",
+            border:"1px solid rgba(255,215,0,.45)",
+            borderRadius:14,
+            padding:"10px 12px",
+          }}>
+            <div style={{ fontSize:14, color:"#FFD700" }}>Install Bear Colour Quest</div>
+            <div style={{ marginTop:4, fontSize:11, fontFamily:"'Nunito',sans-serif", color:"rgba(255,255,255,.82)" }}>
+              {nativeInstallReady
+                ? "Add the game to your home screen for fast launch and offline play."
+                : "On iPhone/iPad: tap Share, then Add to Home Screen."}
+            </div>
+            <div style={{ display:"flex", gap:8, marginTop:8 }}>
+              {nativeInstallReady && (
+                <button onClick={handleInstall} style={{
+                  border:"none",
+                  borderRadius:16,
+                  padding:"6px 12px",
+                  background:"linear-gradient(135deg,#FFD700,#FF8C00)",
+                  color:"#111",
+                  fontFamily:"'Fredoka One',cursive",
+                  fontSize:12,
+                  cursor:"pointer",
+                }}>Install</button>
+              )}
+              <button onClick={dismissInstallBanner} style={{
+                border:"1px solid rgba(255,255,255,.2)",
+                borderRadius:16,
+                padding:"6px 12px",
+                background:"transparent",
+                color:"rgba(255,255,255,.75)",
+                fontFamily:"'Fredoka One',cursive",
+                fontSize:12,
+                cursor:"pointer",
+              }}>{isIOS && !nativeInstallReady ? "Got it" : "Later"}</button>
+            </div>
+          </div>
+        )}
 
         {/* Header */}
         <div style={{ textAlign:"center", padding:"16px 12px 10px" }}>
