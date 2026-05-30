@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Bear icon ember style</title>
+  <desc id="desc">Warm ember bear face icon on a transparent background.</desc>
+  <defs>
+    <linearGradient id="fur" x1="112" y1="80" x2="392" y2="428" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a35d2e"/>
+      <stop offset="0.55" stop-color="#7f3f1f"/>
+      <stop offset="1" stop-color="#4f2412"/>
+    </linearGradient>
+    <linearGradient id="snout" x1="176" y1="214" x2="336" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffd0a1"/>
+      <stop offset="1" stop-color="#d98a4a"/>
+    </linearGradient>
+    <filter id="glow" x="-24%" y="-24%" width="148%" height="148%">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#glow)">
+    <circle cx="148" cy="136" r="70" fill="url(#fur)"/>
+    <circle cx="364" cy="136" r="70" fill="url(#fur)"/>
+    <circle cx="148" cy="136" r="40" fill="#f4a764"/>
+    <circle cx="364" cy="136" r="40" fill="#f4a764"/>
+
+    <path fill="url(#fur)" d="M256 96c-92 0-168 76-168 168 0 92 76 168 168 168s168-76 168-168c0-92-76-168-168-168Z"/>
+    <ellipse cx="256" cy="286" rx="102" ry="86" fill="url(#snout)"/>
+
+    <circle cx="198" cy="238" r="18" fill="#1c110b"/>
+    <circle cx="314" cy="238" r="18" fill="#1c110b"/>
+    <circle cx="193" cy="232" r="5" fill="#ffffff" fill-opacity="0.72"/>
+    <circle cx="309" cy="232" r="5" fill="#ffffff" fill-opacity="0.72"/>
+
+    <path fill="#2b170f" d="M256 256c-20 0-34 12-34 28 0 6 4 11 9 13l25 9 25-9c5-2 9-7 9-13 0-16-14-28-34-28Z"/>
+    <path fill="none" stroke="#2b170f" stroke-width="11" stroke-linecap="round" d="M256 307v20"/>
+    <path fill="none" stroke="#2b170f" stroke-width="11" stroke-linecap="round" d="M256 327c-16 20-39 30-64 30"/>
+    <path fill="none" stroke="#2b170f" stroke-width="11" stroke-linecap="round" d="M256 327c16 20 39 30 64 30"/>
+  </g>
+</svg>

@@ -1,4 +1,4 @@
-const STATIC_CACHE = "bear-colour-quest-static-v1";
+const STATIC_CACHE = "bear-colour-quest-static-v2";
 const RUNTIME_CACHE = "bear-colour-quest-runtime-v1";
 const APP_SHELL = [
   "/",
@@ -7,7 +7,7 @@ const APP_SHELL = [
   "/icons/icon-192.png",
   "/icons/icon-512.png",
   "/icons/apple-touch-icon.png",
-  "/icons/bear-icon.svg"
+  "/icons/bear-icon-ember.svg"
 ];
 
 self.addEventListener("install", (event) => {
