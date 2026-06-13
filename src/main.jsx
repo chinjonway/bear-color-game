@@ -1,6 +1,6 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import BearColorGame from "../bear-colour-game.jsx";
+import App from "./App.jsx";
 import "./styles.css";
 
 if ("serviceWorker" in navigator) {
@@ -13,6 +13,6 @@ if ("serviceWorker" in navigator) {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BearColorGame />
+    <App />
   </StrictMode>
 );

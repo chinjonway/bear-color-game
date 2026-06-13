@@ -1,0 +1,11 @@
+name = "bear-color-worker"
+main = "src/index.js"
+compatibility_date = "2026-05-30"
+
+[[durable_objects.bindings]]
+name = "BEAR_ROOM"
+class_name = "BearRoom"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["BearRoom"]
